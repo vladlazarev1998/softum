@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\MailerController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\MailerController::class, 'index'])->name('index');
 Route::post('/', [\App\Http\Controllers\MailerController::class, 'store'])->name('mailer.store');
 
 Route::get('/{uuid}/success', [\App\Http\Controllers\MailerController::class, 'show'])->name('mailer.show');

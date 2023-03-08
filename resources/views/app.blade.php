@@ -15,7 +15,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Softum</a>
+            <a class="navbar-brand" href="{{ route('index') }}">Softum</a>
         </div>
     </nav>
 </header>
