@@ -40,7 +40,7 @@ class MailerStoreRequest extends FormRequest
         return new MailerDTO(
             $this->from,
             $this->to,
-            $this->cc,
+            $this->cc ?? '',
             $this->subject,
             $this->type,
             $this->body
