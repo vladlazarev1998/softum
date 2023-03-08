@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\DTO\MailerDTO;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MailerStoreRequest extends FormRequest
@@ -29,5 +30,20 @@ class MailerStoreRequest extends FormRequest
             'type' => 'required|string|in:text,html',
             'body' => 'required|string|min:3|max:512'
         ];
+    }
+
+    /**
+     * @return MailerDTO
+     */
+    public function getDTO(): MailerDTO
+    {
+        return new MailerDTO(
+            $this->from,
+            $this->to,
+            $this->cc,
+            $this->subject,
+            $this->type,
+            $this->body
+        );
     }
 }
