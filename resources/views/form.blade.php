@@ -21,6 +21,9 @@
             <div class="form-group mb-4">
                 <label for="cc">CC</label>
                 <input type="email" class="form-control" name="cc" id="cc" value="{{ old('cc') }}">
+                @error('cc')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group mb-4">
                 <label for="subject">Subject</label>
