@@ -14,9 +14,10 @@ class MailerController extends Controller
         return view('form');
     }
 
-    public function store(MailerStoreRequest $request, MailerService $mailerService)
+    public function store(MailerStoreRequest $request, MailerService $mailerService, \App\Helpers\Mailer $phpMailer)
     {
         $mailer = $mailerService->save($request->getDTO());
+        $phpMailer->send($request->getDTO());
         return redirect(route('mailer.show', ['uuid' => $mailer->uuid]));
     }
 
