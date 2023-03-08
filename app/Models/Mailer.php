@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Mailer extends Model
 {
@@ -18,6 +19,7 @@ class Mailer extends Model
         parent::boot();
 
         static::creating(function ($mailer) {
+            $mailer->uuid = Str::uuid();
             $mailer->ip = request()->ip();
             $mailer->user_agent = request()->server('HTTP_USER_AGENT');
         });
