@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StoreMailer;
 use App\Http\Requests\MailerStoreRequest;
 use App\Models\Mailer;
 use App\Services\MailerService;
@@ -14,10 +15,10 @@ class MailerController extends Controller
         return view('form');
     }
 
-    public function store(MailerStoreRequest $request, MailerService $mailerService, \App\Helpers\Mailer $phpMailer)
+    public function store(MailerStoreRequest $request, MailerService $mailerService)
     {
         $mailer = $mailerService->save($request->getDTO());
-        $phpMailer->send($request->getDTO());
+        event(new StoreMailer($request->getDTO()));
         return redirect(route('mailer.show', ['uuid' => $mailer->uuid]));
     }
 
